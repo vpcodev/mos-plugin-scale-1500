@@ -71,7 +71,9 @@ python tools\generate_plugins.py --mode index-edges
 ```
 
 That branch adds 1,500 more plugins and hundreds of extra files. It is intended to cross scanner
-file-count and tree-response limits; do not merge it into the default branch.
+file-count and tree-metadata limits: it includes 3,000 Git-index-only entries with long paths,
+bringing its recursive Git tree response above 10 MiB while remaining within the 48 MiB full
+snapshot response limit. Do not merge it into the default branch.
 
 ## GraphQL probe plan
 

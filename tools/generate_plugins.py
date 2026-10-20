@@ -322,6 +322,24 @@ def add_index_entry(root: Path, mode: str, sha: str, path: str):
     )
 
 
+def add_over_limit_tree_entries(root: Path):
+    long_directory = '/'.join(['p' * 250] * 10)
+    blob_sha = write_git_object(root, b'# Long path tree-size fixture.\n')
+    records = bytearray()
+    for i in range(1, 3001):
+        path = f'plugins/over-limit-giant/tree-metadata/{long_directory}/file-{i:04d}.md'
+        if len(path.encode('utf-8')) > 4096:
+            raise ValueError("The over-limit tree path exceeds GitHub's path-length limit.")
+        records.extend(f'100644 {blob_sha}\t{path}\0'.encode('utf-8'))
+
+    subprocess.run(
+        ['git', '-c', 'core.protectNTFS=false', '-c', 'core.ignorecase=false', 'update-index', '-z', '--index-info'],
+        cwd=root,
+        input=bytes(records),
+        check=True,
+    )
+
+
 def add_git_object_edge_cases(root: Path):
     repository = root
     submodule_commit = subprocess.run(
@@ -386,6 +404,9 @@ def add_git_object_edge_cases(root: Path):
     ).encode('utf-8')
     add_index_entry(root, '100644', write_git_object(root, manifest), f'{plugin_path}/plugin.json')
     add_index_entry(root, '100644', write_git_object(root, skill), f'{plugin_path}/skills/{skill_name}/SKILL.md')
+
+    if (root / 'plugins' / 'over-limit-giant' / 'plugin.json').exists():
+        add_over_limit_tree_entries(root)
 
 
 def main():
