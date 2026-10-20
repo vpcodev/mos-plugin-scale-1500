@@ -1,0 +1,12 @@
+{
+  "name": "plugin-release-management-0350",
+  "description": "Tracks rollout readiness, validation criteria, and production promotion decisions. Plugin 0350 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "release-management-playbook-13",
+      "path": "skills/release-management-playbook-13/SKILL.md"
+    }
+  ]
+}

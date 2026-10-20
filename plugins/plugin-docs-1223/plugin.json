@@ -1,0 +1,12 @@
+{
+  "name": "plugin-docs-1223",
+  "description": "Builds high-signal documentation plans, release notes, and reference summaries for product teams. Plugin 1223 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "docs-playbook-2",
+      "path": "skills/docs-playbook-2/SKILL.md"
+    }
+  ]
+}

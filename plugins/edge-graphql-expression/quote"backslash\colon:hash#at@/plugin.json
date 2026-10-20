@@ -1,0 +1,11 @@
+{
+  "name": "graphql-expression-path",
+  "description": "GraphQL expression path escaping test.",
+  "version": "1.0.0",
+  "skills": [
+    {
+      "name": "quote\"backslash\\colon:hash#at@",
+      "path": "skills/quote\"backslash\\colon:hash#at@/SKILL.md"
+    }
+  ]
+}

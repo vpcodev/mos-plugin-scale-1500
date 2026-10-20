@@ -1,0 +1,12 @@
+{
+  "name": "plugin-storage-0658",
+  "description": "Optimizes object lifecycle, cleanup, and data-access policies for shared service backing stores. Plugin 0658 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "storage-playbook-9",
+      "path": "skills/storage-playbook-9/SKILL.md"
+    }
+  ]
+}

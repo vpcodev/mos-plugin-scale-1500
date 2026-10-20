@@ -1,0 +1,12 @@
+{
+  "name": "plugin-data-platform-0568",
+  "description": "Applies data governance, lineage awareness, and cost signals to shared platform work. Plugin 0568 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "data-platform-playbook-10",
+      "path": "skills/data-platform-playbook-10/SKILL.md"
+    }
+  ]
+}

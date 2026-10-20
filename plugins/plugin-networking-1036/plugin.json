@@ -1,0 +1,12 @@
+{
+  "name": "plugin-networking-1036",
+  "description": "Tracks routing, connectivity, and service-to-service health across evolving environments. Plugin 1036 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "networking-playbook-10",
+      "path": "skills/networking-playbook-10/SKILL.md"
+    }
+  ]
+}

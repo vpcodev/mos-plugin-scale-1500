@@ -1,0 +1,12 @@
+{
+  "name": "plugin-analytics-1099",
+  "description": "Builds measurable reporting loops around launch readiness, adoption, and user-facing quality. Plugin 1099 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "analytics-playbook-8",
+      "path": "skills/analytics-playbook-8/SKILL.md"
+    }
+  ]
+}

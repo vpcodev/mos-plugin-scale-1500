@@ -1,0 +1,12 @@
+{
+  "name": "plugin-data-0342",
+  "description": "Models data pipelines, schema drift, and warehouse checks with repeatable operational guardrails. Plugin 0342 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "data-playbook-5",
+      "path": "skills/data-playbook-5/SKILL.md"
+    }
+  ]
+}

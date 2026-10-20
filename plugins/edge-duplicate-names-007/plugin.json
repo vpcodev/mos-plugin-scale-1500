@@ -1,0 +1,12 @@
+{
+  "name": "shared-duplicate-plugin-name",
+  "description": "Duplicate Names stress plugin for repository scanning. This is intentionally noisy to expose boundary behavior in GraphQL and manifest readers.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "duplicate-names-check",
+      "path": "skills/duplicate-names-check/SKILL.md"
+    }
+  ]
+}

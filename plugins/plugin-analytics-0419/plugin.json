@@ -1,0 +1,12 @@
+{
+  "name": "plugin-analytics-0419",
+  "description": "Builds measurable reporting loops around launch readiness, adoption, and user-facing quality. Plugin 0419 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "analytics-playbook-4",
+      "path": "skills/analytics-playbook-4/SKILL.md"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "plugin-observability-0507",
+  "description": "Connects runtime signals, dashboards, and alert quality checks into a single operational loop. Plugin 0507 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "observability-playbook-1",
+      "path": "skills/observability-playbook-1/SKILL.md"
+    }
+  ]
+}

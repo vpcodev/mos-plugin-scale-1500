@@ -1,0 +1,12 @@
+{
+  "name": "plugin-code-review-1313",
+  "description": "Authenticates code-review decisions via policy checks, change-risk heuristics, and author feedback summaries. Plugin 1313 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "code-review-playbook-1",
+      "path": "skills/code-review-playbook-1/SKILL.md"
+    }
+  ]
+}

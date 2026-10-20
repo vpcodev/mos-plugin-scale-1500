@@ -1,0 +1,12 @@
+{
+  "name": "plugin-docs-0403",
+  "description": "Builds high-signal documentation plans, release notes, and reference summaries for product teams. Plugin 0403 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "docs-playbook-1",
+      "path": "skills/docs-playbook-1/SKILL.md"
+    }
+  ]
+}

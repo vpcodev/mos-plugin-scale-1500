@@ -1,0 +1,12 @@
+{
+  "name": "plugin-cloud-0297",
+  "description": "Speeds up cloud operations, posture checks, and environment readiness analysis for teams. Plugin 0297 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "cloud-playbook-12",
+      "path": "skills/cloud-playbook-12/SKILL.md"
+    }
+  ]
+}

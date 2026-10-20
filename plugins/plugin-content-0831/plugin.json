@@ -1,0 +1,12 @@
+{
+  "name": "plugin-content-0831",
+  "description": "Improves editorial consistency, change review, and source-quality checks for large content sets. Plugin 0831 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "content-playbook-13",
+      "path": "skills/content-playbook-13/SKILL.md"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+﻿{"name": "edge-content-stress-014", "description": "Content Stress stress plugin for repository scanning. This is intentionally noisy to expose boundary behavior in GraphQL and manifest readers.", "version": "1.0.0", "skills": [{"name": "content-stress-check", "path": "skills/content-stress-check/SKILL.md"}]}

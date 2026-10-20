@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import subprocess
 
 DOMAINS = [
     "devops", "security", "data", "docs", "testing", "ui", "ai", "observability",
@@ -13,6 +14,7 @@ VERBS = ["atlas", "harbor", "signal", "orbit", "vector", "cinder", "nimbus", "sp
 SUFFIXES = ["copilot", "ops", "insights", "studio", "agent", "lab", "fleet", "guide", "vault"]
 EDGE_CASE_GROUPS = {
     "large-manifest": 18,
+    "exactly-20-skills": 10,
     "too-many-skills": 12,
     "path-stress": 20,
     "content-stress": 16,
@@ -96,8 +98,6 @@ def write_plugin(root: Path, plugin_name: str, description: str, skill_name: str
         skill_path = plugin_dir / 'skills' / skill_name / 'SKILL.md'
         skill_path.parent.mkdir(parents=True, exist_ok=True)
         skill_path.write_text(skill_text, encoding='utf-8')
-        (plugin_dir / 'content').mkdir(exist_ok=True)
-        (plugin_dir / 'content' / 'overview.md').write_text(f'# {plugin_name}\n\n{description}\n', encoding='utf-8')
     else:
         for idx in range(1, skill_count + 1):
             s_name = f'{skill_name}-{idx}' if idx > 1 else skill_name
@@ -142,22 +142,62 @@ def add_edge_group(root: Path, group_name: str, count: int):
         description = f"{group_name.replace('-', ' ').title()} stress plugin for repository scanning. This is intentionally noisy to expose boundary behavior in GraphQL and manifest readers."
         skill_name = f'{group_name}-check'
         if group_name == 'large-manifest':
-            giant = ('A' * 620000) + '\n---\n' + ('B' * 150000)
-            skill_text = '# Large manifest plugin\n\n' + giant
-            write_plugin(root, plugin_name, description, skill_name, skill_text)
+            write_plugin(root, plugin_name, description, skill_name, f'# Large payload {i}\n\nThis skill exercises bounded manifest and blob reads.\n')
+            plugin_dir = root / 'plugins' / plugin_name
+            manifest_path = plugin_dir / 'plugin.json'
+            target_size = [240 * 1024, 520 * 1024, 1100 * 1024][(i - 1) % 3]
+            manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+            manifest['benchmarkPadding'] = ''
+            encoded_manifest = json.dumps(manifest, ensure_ascii=False, indent=2)
+            padding_length = target_size - len(encoded_manifest.encode('utf-8')) - 1
+            manifest['benchmarkPadding'] = 'A' * max(0, padding_length)
+            manifest_path.write_bytes((json.dumps(manifest, ensure_ascii=False, indent=2) + '\n').encode('utf-8'))
+            skill_sizes = [240 * 1024, 520 * 1024, 1100 * 1024]
+            skill_path = plugin_dir / 'skills' / skill_name / 'SKILL.md'
+            skill_path.write_text(
+                f'---\nname: {skill_name}\ndescription: large content test\n---\n\n# Large skill {i}\n\n'
+                + ('A' * skill_sizes[(i - 1) % 3])
+                + '\n',
+                encoding='utf-8',
+            )
+        elif group_name == 'exactly-20-skills':
+            skill_text = f"---\nname: {skill_name}\ndescription: exactly twenty declared skills\n---\n\n# {skill_name}\n\nThis plugin declares exactly twenty skills to test the accepted boundary.\n"
+            write_plugin(root, plugin_name, description, skill_name, skill_text, skill_count=20)
         elif group_name == 'too-many-skills':
             skill_count = 21
             skill_text = "---\nname: skill\ndescription: content\n---\n\n# skill\n\nFocus on the review and artifact handoff.\n"
             write_plugin(root, plugin_name, description, skill_name, skill_text, skill_count=skill_count)
         elif group_name == 'path-stress':
-            deep_dir = Path('skills') / 'very' / 'deep' / 'nested' / 'folder' / 'with' / 'emoji-🚀' / 'space name' / 'long' / ('a' * 50)
-            skill_text = "---\nname: path-stress\ndescription: verifies path escaping and deep nesting\n---\n\n# Path stress\n\nThis plugin enters a deliberately awkward path shape to test GraphQL expression escaping.\n"
-            write_plugin(root, plugin_name, description, skill_name, skill_text, extra_files={str(deep_dir / 'payload.md'): '# payload\n\nThis is deliberately nested.\n'})
+            path_parts = ['very', 'deep', 'nested', 'emoji-🚀', 'space name', 'hash#tag', 'at@name', 'a' * (240 if i == 1 else 50)]
+            deep_dir = Path('skills').joinpath(*path_parts)
+            skill_path = (deep_dir / 'SKILL.md').as_posix()
+            skill_text = f"---\nname: {skill_name}\ndescription: verifies path escaping and deep nesting\n---\n\n# Path stress\n\nThis plugin exercises a deeply nested Unicode and punctuation path.\n"
+            write_plugin(root, plugin_name, description, skill_name, skill_text)
+            plugin_dir = root / 'plugins' / plugin_name
+            manifest_path = plugin_dir / 'plugin.json'
+            manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+            manifest['skills'][0]['path'] = skill_path
+            manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            old_skill = plugin_dir / 'skills' / skill_name / 'SKILL.md'
+            new_skill = plugin_dir / skill_path
+            new_skill.parent.mkdir(parents=True, exist_ok=True)
+            old_skill.replace(new_skill)
+            if i == 1:
+                new_skill.unlink()
+                parent = new_skill.parent
+                while parent != plugin_dir:
+                    try:
+                        parent.rmdir()
+                    except OSError:
+                        break
+                    parent = parent.parent
         elif group_name == 'content-stress':
-            if i % 4 == 0:
-                skill_text = '---\nname: invalid\ndescription: malformed frontmatter\n\n# badly formed\n'
-                write_plugin(root, plugin_name, description, skill_name, skill_text)
-            elif i % 4 == 1:
+            if i % 6 == 0:
+                write_plugin(root, plugin_name, description, skill_name, f'# Empty content case\n')
+                empty_content = root / 'plugins' / plugin_name / 'content' / 'empty.md'
+                empty_content.parent.mkdir(parents=True, exist_ok=True)
+                empty_content.write_bytes(b'')
+            elif i % 6 == 1:
                 manifest_dir = root / 'plugins' / plugin_name
                 manifest_dir.mkdir(parents=True, exist_ok=True)
                 bad = '{"name": "dup", "version": "1.0.0", "description": "duplicate key", "description": "second duplicate" }'
@@ -165,19 +205,31 @@ def add_edge_group(root: Path, group_name: str, count: int):
                 sx = manifest_dir / 'skills' / skill_name / 'SKILL.md'
                 sx.parent.mkdir(parents=True, exist_ok=True)
                 sx.write_text('---\nname: content-stress\ndescription: duplicate JSON key test\n---\n\n# content stress\n\nThis plugin intentionally uses malformed content.\n', encoding='utf-8')
+                (manifest_dir / 'content').mkdir(parents=True, exist_ok=True)
                 (manifest_dir / 'content' / 'note.bin').write_bytes(b'\x00\x01\x02\x03\xFF\xFE\xFD')
-            elif i % 4 == 2:
+            elif i % 6 == 2:
                 manifest_dir = root / 'plugins' / plugin_name
                 manifest_dir.mkdir(parents=True, exist_ok=True)
-                payload_utf8 = '\ufeff{"name": "bom", "description": "utf-8 bom test"}\r\n'
-                (manifest_dir / 'plugin.json').write_bytes(payload_utf8.encode('utf-8-sig'))
+                payload_utf8 = json.dumps({'name': plugin_name, 'description': description, 'version': '1.0.0', 'skills': [{'name': skill_name, 'path': f'skills/{skill_name}/SKILL.md'}]}, ensure_ascii=False)
+                (manifest_dir / 'plugin.json').write_bytes(b'\xef\xbb\xbf' + payload_utf8.encode('utf-8'))
                 f = manifest_dir / 'skills' / skill_name / 'SKILL.md'
                 f.parent.mkdir(parents=True, exist_ok=True)
                 f.write_bytes(b'---\r\nname: bom\r\ndescription: CRLF file\r\n---\r\n\r\n# bom\r\n\r\nThis file uses CRLF line endings.\r\n')
+            elif i % 6 == 3:
+                manifest_dir = root / 'plugins' / plugin_name
+                manifest_dir.mkdir(parents=True, exist_ok=True)
+                (manifest_dir / 'plugin.json').write_bytes(b'{"name":"invalid-\xff"}')
+                f = manifest_dir / 'skills' / skill_name / 'SKILL.md'
+                f.parent.mkdir(parents=True, exist_ok=True)
+                f.write_text(f'---\nname: {skill_name}\ndescription: non-UTF-8 manifest test\n---\n\n# {skill_name}\n\nThe manifest contains an invalid UTF-8 byte.\n', encoding='utf-8')
+            elif i % 6 == 4:
+                write_plugin(root, plugin_name, description, skill_name, f'---\nname: {skill_name}\ndescription: invalid JSON test\n---\n\n# {skill_name}\n\nThe plugin manifest is intentionally malformed JSON.\n')
+                (root / 'plugins' / plugin_name / 'plugin.json').write_text('{"name": "broken", "skills": [}', encoding='utf-8')
             else:
                 manifest_dir = root / 'plugins' / plugin_name
                 manifest_dir.mkdir(parents=True, exist_ok=True)
-                (manifest_dir / 'plugin.json').write_text('{"name": "empty"}', encoding='utf-8')
+                manifest = {'name': plugin_name, 'description': description, 'version': '1.0.0', 'skills': [{'name': skill_name, 'path': f'skills/{skill_name}/SKILL.md'}]}
+                (manifest_dir / 'plugin.json').write_text(json.dumps(manifest), encoding='utf-8')
                 (manifest_dir / 'skills' / skill_name / 'SKILL.md').parent.mkdir(parents=True, exist_ok=True)
                 (manifest_dir / 'skills' / skill_name / 'SKILL.md').write_text('---\nname: empty\ndescription: empty content\n---\n\n# empty\n', encoding='utf-8')
                 (manifest_dir / 'skills' / skill_name / 'empty.md').write_text('', encoding='utf-8')
@@ -192,16 +244,23 @@ def add_edge_group(root: Path, group_name: str, count: int):
                 src = plugin_dir / 'docs' / 'source.md'
                 src.parent.mkdir(parents=True, exist_ok=True)
                 src.write_text('# docs\n\nThis is a symlink target.\n', encoding='utf-8')
-                try:
-                    os.symlink(src, plugin_dir / 'docs-link')
-                except Exception:
-                    pass
+                link = plugin_dir / 'docs-link'
+                if not link.is_symlink():
+                    os.symlink('docs/source.md', link)
             if i % 3 == 1:
-                (plugin_dir / '.gitmodules').write_text('[submodule "vendor/module"]\n\tpath = vendor/module\n\turl = https://github.com/example/vendor.git\n', encoding='utf-8')
+                nested_gitmodules = plugin_dir / '.gitmodules'
+                if nested_gitmodules.exists():
+                    nested_gitmodules.unlink()
+                (root / '.gitmodules').write_text(
+                    '[submodule "vendor/module"]\n'
+                    '\tpath = plugins/edge-git-stress-001/vendor/module\n'
+                    '\turl = https://github.com/vpcodev/mos-plugin-scale-1500.git\n',
+                    encoding='utf-8',
+                )
             if i % 3 == 2:
-                (plugin_dir / 'lfs-pointer.txt').write_text('version https://git-lfs.github.com/spec/v1\nsha256: 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\n', encoding='utf-8')
+                (plugin_dir / 'lfs-pointer.txt').write_text('version https://git-lfs.github.com/spec/v1\noid sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\nsize 1048576\n', encoding='utf-8')
         elif group_name == 'duplicate-names':
-            write_plugin(root, plugin_name, description, skill_name, f'---\nname: {skill_name}\ndescription: duplicate name for comparison\n---\n\n# duplicate\n\nThis plugin carries the same display name as a sibling.\n')
+            write_plugin(root, plugin_name, description, skill_name, f'---\nname: {skill_name}\ndescription: duplicate name for comparison\n---\n\n# duplicate\n\nThis plugin carries the same display name as a sibling.\n', name_override='shared-duplicate-plugin-name')
         elif group_name == 'layout-conflicts':
             plugin_dir = root / 'plugins' / plugin_name
             plugin_dir.mkdir(parents=True, exist_ok=True)
@@ -242,15 +301,96 @@ def build_over_limits(root: Path):
         placeholder.write_text('# ' + ('x' * 2000) + '\n', encoding='utf-8')
 
 
+def write_git_object(root: Path, content: bytes) -> str:
+    result = subprocess.run(
+        ['git', 'hash-object', '-w', '--stdin'],
+        cwd=root,
+        input=content,
+        capture_output=True,
+        check=True,
+    )
+    return result.stdout.decode('ascii').strip()
+
+
+def add_index_entry(root: Path, mode: str, sha: str, path: str):
+    record = f'{mode} {sha}\t{path}\0'.encode('utf-8')
+    subprocess.run(
+        ['git', '-c', 'core.protectNTFS=false', '-c', 'core.ignorecase=false', 'update-index', '-z', '--index-info'],
+        cwd=root,
+        input=record,
+        check=True,
+    )
+
+
+def add_git_object_edge_cases(root: Path):
+    repository = root
+    submodule_commit = subprocess.run(
+        ['git', 'rev-parse', 'HEAD'],
+        cwd=repository,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    subprocess.run(
+        ['git', 'update-index', '--force-remove', 'plugins/edge-git-stress-002/vendor/module'],
+        cwd=root,
+        check=True,
+    )
+    add_index_entry(root, '160000', submodule_commit, 'plugins/edge-git-stress-001/vendor/module')
+
+    long_path = (
+        'plugins/edge-path-stress-001/skills/very/deep/nested/emoji-🚀/space name/hash#tag/at@name/'
+        + ('a' * 240)
+        + '/SKILL.md'
+    )
+    long_skill = (
+        '---\nname: path-stress-check\ndescription: verifies path escaping and deep nesting\n---\n\n'
+        '# Path stress\n\nThis plugin exercises a deeply nested Unicode and punctuation path.\n'
+    ).encode('utf-8')
+    add_index_entry(root, '100644', write_git_object(root, long_skill), long_path)
+
+    for case_name in ['CaseOnly', 'caseonly']:
+        plugin = f'plugins/edge-case-collision/{case_name}'
+        skill_name = f'{case_name}-skill'
+        manifest = json.dumps({
+            'name': f'case-collision-{case_name}',
+            'description': 'Case-only path collision test.',
+            'version': '1.0.0',
+            'skills': [{'name': skill_name, 'path': f'skills/{skill_name}/SKILL.md'}],
+        }, ensure_ascii=False, indent=2).encode('utf-8') + b'\n'
+        skill = (
+            f'---\nname: {skill_name}\ndescription: case-only path collision test\n---\n\n'
+            f'# {skill_name}\n\nThis skill tests paths that differ only by letter case.\n'
+        ).encode('utf-8')
+        add_index_entry(root, '100644', write_git_object(root, manifest), f'{plugin}/plugin.json')
+        add_index_entry(root, '100644', write_git_object(root, skill), f'{plugin}/skills/{skill_name}/SKILL.md')
+
+    plugin_path = 'plugins/edge-graphql-expression/quote"backslash\\colon:hash#at@'
+    skill_name = 'quote"backslash\\colon:hash#at@'
+    manifest = json.dumps({
+        'name': 'graphql-expression-path',
+        'description': 'GraphQL expression path escaping test.',
+        'version': '1.0.0',
+        'skills': [{'name': skill_name, 'path': f'skills/{skill_name}/SKILL.md'}],
+    }, ensure_ascii=False, indent=2).encode('utf-8') + b'\n'
+    skill = (
+        f'---\nname: graphql-expression-path\ndescription: path escaping test\n---\n\n'
+        '# GraphQL path escaping\n\nThis file path contains a quote, backslash, colon, hash, and at-sign.\n'
+    ).encode('utf-8')
+    add_index_entry(root, '100644', write_git_object(root, manifest), f'{plugin_path}/plugin.json')
+    add_index_entry(root, '100644', write_git_object(root, skill), f'{plugin_path}/skills/{skill_name}/SKILL.md')
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--mode', choices=['main', 'over-limits'], default='main')
+    parser.add_argument('--mode', choices=['main', 'over-limits', 'index-edges'], default='main')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     if args.mode == 'main':
         build_main(root)
-    else:
+    elif args.mode == 'over-limits':
         build_over_limits(root)
+    add_git_object_edge_cases(root)
 
 if __name__ == '__main__':
     main()

@@ -1,0 +1,12 @@
+{
+  "name": "plugin-search-1375",
+  "description": "Improves triage and knowledge discovery across code, docs, and operational artifacts. Plugin 1375 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "search-playbook-11",
+      "path": "skills/search-playbook-11/SKILL.md"
+    }
+  ]
+}

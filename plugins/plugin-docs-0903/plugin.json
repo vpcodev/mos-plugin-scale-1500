@@ -1,0 +1,12 @@
+{
+  "name": "plugin-docs-0903",
+  "description": "Builds high-signal documentation plans, release notes, and reference summaries for product teams. Plugin 0903 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "docs-playbook-7",
+      "path": "skills/docs-playbook-7/SKILL.md"
+    }
+  ]
+}

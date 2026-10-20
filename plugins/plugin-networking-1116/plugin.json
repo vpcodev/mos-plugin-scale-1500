@@ -1,0 +1,12 @@
+{
+  "name": "plugin-networking-1116",
+  "description": "Tracks routing, connectivity, and service-to-service health across evolving environments. Plugin 1116 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "networking-playbook-12",
+      "path": "skills/networking-playbook-12/SKILL.md"
+    }
+  ]
+}

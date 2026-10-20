@@ -1,0 +1,12 @@
+{
+  "name": "plugin-ai-0446",
+  "description": "Coordinates prompt-scoping, model usage guardrails, and structured reasoning across multi-step tasks. Plugin 0446 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "ai-playbook-5",
+      "path": "skills/ai-playbook-5/SKILL.md"
+    }
+  ]
+}

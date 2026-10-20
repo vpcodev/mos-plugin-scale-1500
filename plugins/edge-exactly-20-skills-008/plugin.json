@@ -1,0 +1,88 @@
+{
+  "name": "edge-exactly-20-skills-008",
+  "description": "Exactly 20 Skills stress plugin for repository scanning. This is intentionally noisy to expose boundary behavior in GraphQL and manifest readers.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "exactly-20-skills-check",
+      "path": "skills/exactly-20-skills-check/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-2",
+      "path": "skills/exactly-20-skills-check-2/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-3",
+      "path": "skills/exactly-20-skills-check-3/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-4",
+      "path": "skills/exactly-20-skills-check-4/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-5",
+      "path": "skills/exactly-20-skills-check-5/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-6",
+      "path": "skills/exactly-20-skills-check-6/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-7",
+      "path": "skills/exactly-20-skills-check-7/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-8",
+      "path": "skills/exactly-20-skills-check-8/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-9",
+      "path": "skills/exactly-20-skills-check-9/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-10",
+      "path": "skills/exactly-20-skills-check-10/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-11",
+      "path": "skills/exactly-20-skills-check-11/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-12",
+      "path": "skills/exactly-20-skills-check-12/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-13",
+      "path": "skills/exactly-20-skills-check-13/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-14",
+      "path": "skills/exactly-20-skills-check-14/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-15",
+      "path": "skills/exactly-20-skills-check-15/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-16",
+      "path": "skills/exactly-20-skills-check-16/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-17",
+      "path": "skills/exactly-20-skills-check-17/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-18",
+      "path": "skills/exactly-20-skills-check-18/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-19",
+      "path": "skills/exactly-20-skills-check-19/SKILL.md"
+    },
+    {
+      "name": "exactly-20-skills-check-20",
+      "path": "skills/exactly-20-skills-check-20/SKILL.md"
+    }
+  ]
+}

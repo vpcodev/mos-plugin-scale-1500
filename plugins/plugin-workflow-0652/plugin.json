@@ -1,0 +1,12 @@
+{
+  "name": "plugin-workflow-0652",
+  "description": "Maps team rituals into repeatable execution patterns, handoff steps, and decision checkpoints. Plugin 0652 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "workflow-playbook-3",
+      "path": "skills/workflow-playbook-3/SKILL.md"
+    }
+  ]
+}

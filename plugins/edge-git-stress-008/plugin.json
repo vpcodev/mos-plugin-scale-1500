@@ -1,0 +1,11 @@
+{
+  "name": "edge-git-stress-008",
+  "description": "Git Stress stress plugin for repository scanning. This is intentionally noisy to expose boundary behavior in GraphQL and manifest readers.",
+  "version": "1.0.0",
+  "skills": [
+    {
+      "name": "git-stress",
+      "path": "skills/git-stress/SKILL.md"
+    }
+  ]
+}

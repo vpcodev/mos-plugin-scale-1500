@@ -1,0 +1,12 @@
+{
+  "name": "plugin-security-0301",
+  "description": "Scans for insecure defaults, dependency drift, and policy gaps before a change lands. Plugin 0301 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "security-playbook-3",
+      "path": "skills/security-playbook-3/SKILL.md"
+    }
+  ]
+}

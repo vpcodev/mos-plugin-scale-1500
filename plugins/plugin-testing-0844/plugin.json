@@ -1,0 +1,12 @@
+{
+  "name": "plugin-testing-0844",
+  "description": "Carries deterministic verification patterns for unit, integration, and end-to-end release checks. Plugin 0844 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "testing-playbook-13",
+      "path": "skills/testing-playbook-13/SKILL.md"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "plugin-ui-0465",
+  "description": "Provides design-system consistency checks and interface review patterns for product workflows. Plugin 0465 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "ui-playbook-11",
+      "path": "skills/ui-playbook-11/SKILL.md"
+    }
+  ]
+}

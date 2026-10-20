@@ -1,0 +1,12 @@
+{
+  "name": "plugin-devops-0260",
+  "description": "Helps teams automate CI/CD workflows, branch health checks, and release signoff in mixed environments. Plugin 0260 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "devops-playbook-1",
+      "path": "skills/devops-playbook-1/SKILL.md"
+    }
+  ]
+}
