@@ -50,10 +50,13 @@ Stage the working-tree files first, then restore the Git-only fixtures in the in
 committing:
 
 ```powershell
-git -c core.longpaths=true add -- README.md .gitmodules tools plugins
+git -c core.longpaths=true add -- README.md .gitattributes .gitmodules tools plugins
 python tools\generate_plugins.py --mode index-edges
 git commit -m "test: add generated plugin fixtures"
 ```
+
+The `index-edges` pass also preserves the CRLF test blob byte-for-byte, even when the local Git
+configuration would otherwise normalize line endings.
 
 The source fixture commit is intentionally kept small so generated content can be published in a
 small number of commits.

@@ -338,6 +338,13 @@ def add_git_object_edge_cases(root: Path):
     )
     add_index_entry(root, '160000', submodule_commit, 'plugins/edge-git-stress-001/vendor/module')
 
+    crlf_path = 'plugins/edge-content-stress-002/skills/content-stress-check/SKILL.md'
+    crlf_skill = (
+        b'---\r\nname: bom\r\ndescription: CRLF file\r\n---\r\n\r\n'
+        b'# bom\r\n\r\nThis file uses CRLF line endings.\r\n'
+    )
+    add_index_entry(root, '100644', write_git_object(root, crlf_skill), crlf_path)
+
     long_path = (
         'plugins/edge-path-stress-001/skills/very/deep/nested/emoji-🚀/space name/hash#tag/at@name/'
         + ('a' * 240)
