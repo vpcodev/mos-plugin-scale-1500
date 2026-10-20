@@ -1,0 +1,12 @@
+{
+  "name": "overflow-release-management-5130",
+  "description": "Tracks rollout readiness, validation criteria, and production promotion decisions. Plugin 5130 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "release-management-playbook-9",
+      "path": "skills/release-management-playbook-9/SKILL.md"
+    }
+  ]
+}

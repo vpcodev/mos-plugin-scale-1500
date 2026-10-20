@@ -1,0 +1,12 @@
+{
+  "name": "overflow-ai-5606",
+  "description": "Coordinates prompt-scoping, model usage guardrails, and structured reasoning across multi-step tasks. Plugin 5606 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "ai-playbook-4",
+      "path": "skills/ai-playbook-4/SKILL.md"
+    }
+  ]
+}

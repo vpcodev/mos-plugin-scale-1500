@@ -1,0 +1,12 @@
+{
+  "name": "overflow-platform-engineering-5429",
+  "description": "Standardizes templates, environment health, and service lifecycle checks across teams. Plugin 5429 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "platform-engineering-playbook-9",
+      "path": "skills/platform-engineering-playbook-9/SKILL.md"
+    }
+  ]
+}

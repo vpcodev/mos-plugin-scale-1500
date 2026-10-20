@@ -1,0 +1,12 @@
+{
+  "name": "overflow-architecture-6394",
+  "description": "Captures architecture decisions, dependency boundaries, and system trade-offs in a reusable format. Plugin 6394 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "architecture-playbook-12",
+      "path": "skills/architecture-playbook-12/SKILL.md"
+    }
+  ]
+}

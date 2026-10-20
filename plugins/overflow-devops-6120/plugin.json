@@ -1,0 +1,12 @@
+{
+  "name": "overflow-devops-6120",
+  "description": "Helps teams automate CI/CD workflows, branch health checks, and release signoff in mixed environments. Plugin 6120 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "devops-playbook-11",
+      "path": "skills/devops-playbook-11/SKILL.md"
+    }
+  ]
+}

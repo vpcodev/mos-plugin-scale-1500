@@ -1,0 +1,12 @@
+{
+  "name": "overflow-networking-5056",
+  "description": "Tracks routing, connectivity, and service-to-service health across evolving environments. Plugin 5056 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "networking-playbook-13",
+      "path": "skills/networking-playbook-13/SKILL.md"
+    }
+  ]
+}

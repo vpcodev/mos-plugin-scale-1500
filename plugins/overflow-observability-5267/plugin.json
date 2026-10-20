@@ -1,0 +1,12 @@
+{
+  "name": "overflow-observability-5267",
+  "description": "Connects runtime signals, dashboards, and alert quality checks into a single operational loop. Plugin 5267 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "observability-playbook-3",
+      "path": "skills/observability-playbook-3/SKILL.md"
+    }
+  ]
+}

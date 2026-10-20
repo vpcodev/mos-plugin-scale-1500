@@ -1,0 +1,12 @@
+{
+  "name": "overflow-content-5191",
+  "description": "Improves editorial consistency, change review, and source-quality checks for large content sets. Plugin 5191 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "content-playbook-5",
+      "path": "skills/content-playbook-5/SKILL.md"
+    }
+  ]
+}

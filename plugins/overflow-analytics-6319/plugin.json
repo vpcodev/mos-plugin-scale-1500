@@ -1,0 +1,12 @@
+{
+  "name": "overflow-analytics-6319",
+  "description": "Builds measurable reporting loops around launch readiness, adoption, and user-facing quality. Plugin 6319 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "analytics-playbook-2",
+      "path": "skills/analytics-playbook-2/SKILL.md"
+    }
+  ]
+}

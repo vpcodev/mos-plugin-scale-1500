@@ -1,0 +1,12 @@
+{
+  "name": "overflow-code-review-6153",
+  "description": "Authenticates code-review decisions via policy checks, change-risk heuristics, and author feedback summaries. Plugin 6153 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "code-review-playbook-5",
+      "path": "skills/code-review-playbook-5/SKILL.md"
+    }
+  ]
+}

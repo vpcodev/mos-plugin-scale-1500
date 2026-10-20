@@ -1,0 +1,12 @@
+{
+  "name": "overflow-networking-6116",
+  "description": "Tracks routing, connectivity, and service-to-service health across evolving environments. Plugin 6116 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "networking-playbook-7",
+      "path": "skills/networking-playbook-7/SKILL.md"
+    }
+  ]
+}

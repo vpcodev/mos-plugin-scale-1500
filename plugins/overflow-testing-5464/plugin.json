@@ -1,0 +1,12 @@
+{
+  "name": "overflow-testing-5464",
+  "description": "Carries deterministic verification patterns for unit, integration, and end-to-end release checks. Plugin 5464 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "testing-playbook-5",
+      "path": "skills/testing-playbook-5/SKILL.md"
+    }
+  ]
+}

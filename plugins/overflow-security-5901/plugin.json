@@ -1,0 +1,12 @@
+{
+  "name": "overflow-security-5901",
+  "description": "Scans for insecure defaults, dependency drift, and policy gaps before a change lands. Plugin 5901 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "security-playbook-13",
+      "path": "skills/security-playbook-13/SKILL.md"
+    }
+  ]
+}

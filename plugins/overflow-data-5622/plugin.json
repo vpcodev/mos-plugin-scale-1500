@@ -1,0 +1,12 @@
+{
+  "name": "overflow-data-5622",
+  "description": "Models data pipelines, schema drift, and warehouse checks with repeatable operational guardrails. Plugin 5622 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "data-playbook-7",
+      "path": "skills/data-playbook-7/SKILL.md"
+    }
+  ]
+}

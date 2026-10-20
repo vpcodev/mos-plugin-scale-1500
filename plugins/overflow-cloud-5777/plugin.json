@@ -1,0 +1,12 @@
+{
+  "name": "overflow-cloud-5777",
+  "description": "Speeds up cloud operations, posture checks, and environment readiness analysis for teams. Plugin 5777 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "cloud-playbook-6",
+      "path": "skills/cloud-playbook-6/SKILL.md"
+    }
+  ]
+}

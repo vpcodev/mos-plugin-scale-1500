@@ -1,0 +1,12 @@
+{
+  "name": "overflow-docs-6023",
+  "description": "Builds high-signal documentation plans, release notes, and reference summaries for product teams. Plugin 6023 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "docs-playbook-5",
+      "path": "skills/docs-playbook-5/SKILL.md"
+    }
+  ]
+}

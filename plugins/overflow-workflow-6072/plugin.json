@@ -1,0 +1,12 @@
+{
+  "name": "overflow-workflow-6072",
+  "description": "Maps team rituals into repeatable execution patterns, handoff steps, and decision checkpoints. Plugin 6072 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "workflow-playbook-2",
+      "path": "skills/workflow-playbook-2/SKILL.md"
+    }
+  ]
+}

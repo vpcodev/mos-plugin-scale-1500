@@ -1,0 +1,12 @@
+{
+  "name": "overflow-storage-6398",
+  "description": "Optimizes object lifecycle, cleanup, and data-access policies for shared service backing stores. Plugin 6398 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "storage-playbook-3",
+      "path": "skills/storage-playbook-3/SKILL.md"
+    }
+  ]
+}

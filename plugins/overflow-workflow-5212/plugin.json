@@ -1,0 +1,12 @@
+{
+  "name": "overflow-workflow-5212",
+  "description": "Maps team rituals into repeatable execution patterns, handoff steps, and decision checkpoints. Plugin 5212 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "workflow-playbook-13",
+      "path": "skills/workflow-playbook-13/SKILL.md"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "overflow-search-6495",
+  "description": "Improves triage and knowledge discovery across code, docs, and operational artifacts. Plugin 6495 centers the workflow around a reliable, repeatable operational habit.",
+  "version": "1.0.0",
+  "type": "plugin",
+  "skills": [
+    {
+      "name": "search-playbook-9",
+      "path": "skills/search-playbook-9/SKILL.md"
+    }
+  ]
+}
